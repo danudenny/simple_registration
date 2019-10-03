@@ -1,0 +1,20 @@
+<div class="jumbotron vertical-center">
+    <div class="container">
+      <legend *ngIf="!registerHidden" ><h2 style="text-align: center; margin-top: -10px;">LOGIN</h2></legend>
+  
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="!registerHidden" >
+
+        <div class="form-group" [ngClass]="{ 'has-error': invalidEmail() }"> <!-- Email -->
+          <label for="email" class="control-label">E-mail</label>
+          <input type="text" formControlName="email" class="form-control" id="email" name="email" placeholder="your@email.com" [(ngModel)]="userData.email">
+          <p *ngIf="invalidEmail()" id="email_error" class="help-block">Invalid email address.</p>
+        </div>
+        <hr>
+        <div>
+          <button type="submit" class="btn btn-lg btn-block btn-register">Login</button>
+        </div>
+    
+      </form>
+        
+    </div>
+  </div>

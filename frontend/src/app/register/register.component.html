@@ -1,39 +1,65 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<div class="jumbotron vertical-center">
+  <div class="container">
+    <legend *ngIf="!registerHidden" ><h2 style="text-align: center; margin-top: -10px;">USER REGISTRATION</h2></legend>
 
-    <div class="form-group" [ngClass]="{ 'has-error': invalidPhone() }"> <!-- First Name -->
-      <label for="phone" class="control-label">Mobile Number</label>
-      <input type="text" formControlName="phone" class="form-control" id="phone" name="phone" placeholder="+62xxxxxxxx">
-      <p *ngIf="invalidPhone()" id="first_name_error" class="help-block">Invalid Indonesia Mobile Number.</p>
-    </div>
-
-    <div class="form-group" [ngClass]="{ 'has-error': invalidFirstName() }"> <!-- First Name -->
-      <label for="firstname" class="control-label">First Name</label>
-      <input type="text" formControlName="firstname" class="form-control" id="firstname" name="firstname" placeholder="Martin">
-      <p *ngIf="invalidFirstName()" id="first_name_error" class="help-block">Invalid first name.</p>
-    </div>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="!registerHidden" >
+    
+      <input type="text" formControlName="id" [(ngModel)]="userData.id" hidden>
   
-    <div class="form-group" [ngClass]="{ 'has-error': invalidLastName() }"> <!-- Last Name -->
-      <label for="lastname" class="control-label">Last Name</label>
-      <input type="text" formControlName="lastname" class="form-control" id="lastname" name="lastname" placeholder="Toha">
-      <p *ngIf="invalidLastName()" id="last_name_error" class="help-block">Invalid last name.</p>
-    </div>
-
-    <div>
-      <label for="lastname" class="control-label">Gender</label>
-      <div>
-        <input type="radio" value="male" name="gender" [(ngModel)]="gender" required #genderControl="ngModel"> Male
-        <input type="radio" value="female" name="gender" [(ngModel)]="gender" required> Female
+      <div class="form-group required" [ngClass]="{ 'has-error': invalidPhone() }">
+        <label for="phone" class="control-label">Mobile Number</label>
+        <input type="text" formControlName="phone" class="form-control" id="phone" name="phone" placeholder="6281xxxxxx" [(ngModel)]="userData.phone">
+        <p *ngIf="invalidPhone()" id="first_name_error" class="help-block">Invalid Indonesia Mobile Number.</p>
       </div>
-    </div>
   
-    <div class="form-group" [ngClass]="{ 'has-error': invalidEmail() }"> <!-- Email -->
-      <label for="email" class="control-label">E-mail</label>
-      <input type="text" formControlName="email" class="form-control" id="email" name="email" placeholder="your@email.com">
-      <p *ngIf="invalidEmail()" id="email_error" class="help-block">Invalid email address.</p>
-    </div>
+      <div class="form-group required" [ngClass]="{ 'has-error': invalidFirstName() }">
+        <label for="firstname" class="control-label">First Name</label>
+        <input type="text" formControlName="firstname" class="form-control" id="firstname" name="firstname" placeholder="Firstname" [(ngModel)]="userData.firstname">
+        <p *ngIf="invalidFirstName()" id="first_name_error" class="help-block">Invalid first name.</p>
+      </div>
+    
+      <div class="form-group required" [ngClass]="{ 'has-error': invalidLastName() }">
+        <label for="lastname" class="control-label">Last Name</label>
+        <input type="text" formControlName="lastname" class="form-control" id="lastname" name="lastname" placeholder="Lastname" [(ngModel)]="userData.lastname">
+        <p *ngIf="invalidLastName()" id="last_name_error" class="help-block">Invalid last name.</p>
+      </div>
+  
+      <div class="form-group optional">
+        <label for="dob" class="control-label">Date of Birth</label>
+        <div>
+          <label class="input">
+            <input type="text" formControlName="dob" class="form-control" name="dob" value="{{ userData.dob | date: 'dd MMMM yyyy' }}" bsDatepicker [bsConfig]="datePickerConfig" [(ngModel)]="userData.dob" [minDate]="minDate"/>
+          </label>
+        </div>
+      </div>
       
-    <div> <!-- Register Button -->
-      <button [disabled]="!userForm.valid" type="submit" class="btn btn-primary">Register</button>
-    </div>
+      <div class="form-group">
+        <label for="gender" class="control-label">Gender</label>
+        <div>
+          <label class="radio-inline">
+            <input type="radio" formControlName="gender" name="gender" value="male" [(ngModel)]="userData.gender" ><i></i>Male
+          </label> 
+          <label class="radio-inline">
+            <input type="radio" formControlName="gender" name="gender" value="female" [(ngModel)]="userData.gender"><i></i>Female
+          </label>
+        </div>
+      </div>
+    
+      <div class="form-group required" [ngClass]="{ 'has-error': invalidEmail() }"> <!-- Email -->
+        <label for="email" class="control-label">E-mail</label>
+        <input type="text" formControlName="email" class="form-control" id="email" name="email" placeholder="your@email.com" [(ngModel)]="userData.email">
+        <p *ngIf="invalidEmail()" id="email_error" class="help-block">Invalid email address.</p>
+      </div>
+        <hr>
+      <div> <!-- Register Button -->
+        <button type="submit" class="btn btn-lg btn-block btn-register">Register</button>
+      </div>
   
-  </form>	
+    </form>	
+    <p *ngIf="!loginHidden">
+      Selamat registrasi anda berhasil! 
+      Anda akan mengarah ke halaman login dalam {{counter$ | async}} detik
+    </p>
+      
+  </div>
+</div>
