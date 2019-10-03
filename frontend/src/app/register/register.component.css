@@ -1,0 +1,26 @@
+.vertical-center {
+    margin: 0 auto;
+    width:40%;
+    margin-top: 20px;
+}
+
+.form-group.required .control-label:after {
+    content:" *";
+    color:red;
+}
+
+.form-group.optional .control-label:after {
+    content:" (optional)";
+    color:grey;
+    font-size: 17px;
+    font-weight: 100;
+}
+.btn-register {
+    background-color: blueviolet;
+    color: azure
+}
+
+label.control-label {
+    font-weight: 100;
+    font-size: 20px;
+}
