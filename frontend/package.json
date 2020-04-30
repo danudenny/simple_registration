@@ -22,7 +22,7 @@
     "bootstrap": "^3.4.1",
     "core-js": "^2.5.4",
     "env": "0.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-combo-date-picker": "^1.6.0",
     "ngx-bootstrap": "^5.1.2",
     "ngx-combo-datepicker": "0.0.7",
